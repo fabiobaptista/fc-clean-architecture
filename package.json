@@ -1,0 +1,44 @@
+{
+  "name": "fc-clean-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:unit": "npm test -- --watch -c jest-unit.config.js",
+    "test:verbose": "jest --passWithNoTests  --runInBand",
+    "test:intg": "npm test -- --watch -c jest-integration.config.js",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "check": "npm-check -s -u"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/jest": "^27.5.1",
+    "@types/node": "^17.0.34",
+    "@types/validator": "^13.7.2",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "eslint": "^7.32.0",
+    "eslint-config-standard-with-typescript": "^21.0.1",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.2.0",
+    "git-commit-msg-linter": "^4.1.2",
+    "husky": "^8.0.1",
+    "jest": "^28.1.0",
+    "lint-staged": "^12.4.1",
+    "npm-check": "^5.9.2",
+    "ts-jest": "^28.0.2",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "@types/uuid": "^8.3.4",
+    "sequelize": "^6.19.2",
+    "sequelize-typescript": "^2.1.3",
+    "sqlite3": "^5.0.8",
+    "uuid": "^8.3.2",
+    "validator": "^13.7.0"
+  }
+}
