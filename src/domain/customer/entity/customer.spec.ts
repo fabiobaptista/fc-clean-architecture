@@ -1,67 +1,66 @@
-import CustomerFactory from "../factory/customer.factory";
-import Address from "../value-objects/address";
-import Customer from "./customer";
+import CustomerFactory from '../factory/customer.factory'
+import Address from '../value-objects/address'
+import Customer from './customer'
 
-describe("Customer unit test", () => {
-
-  it("should throw error when id is empty", () => {
+describe('Customer unit test', () => {
+  test ('should throw error when id is empty', () => {
     expect(() => {
-      const customer = new Customer("", "Fabio");
+      void new Customer('', 'Fabio')
     })
-      .toThrowError("Id is required");
-  });
-
-  it("should throw error when name is empty", () => {
-    expect(() => {
-      const customer = new Customer("1", "");
-    })
-      .toThrowError("Name is required");
+      .toThrowError('Id is required')
   })
 
-  it("should change name", () => {
-    const newName = "Fabio Baptista";
-    const customer = CustomerFactory.create("Fabio");
+  test ('should throw error when name is empty', () => {
+    expect(() => {
+      void new Customer('1', '')
+    })
+      .toThrowError('Name is required')
+  })
 
-    customer.changeName(newName);
+  test ('should change name', () => {
+    const newName = 'Fabio Baptista'
+    const customer = CustomerFactory.create('Fabio')
+
+    customer.changeName(newName)
 
     expect(customer.name).toBe(newName)
-  });
+  })
 
-  it("should activate customer", () => {
-    const customer = CustomerFactory.create("Fabio");
-    const address = new Address("Street", 1, "Zip", "City");
-    customer.changeAddress(address);
+  test ('should activate customer', () => {
+    const customer = CustomerFactory.create('Fabio')
+    const address = new Address('Street', 1, 'Zip', 'City')
+    customer.changeAddress(address)
 
-    customer.activate();
+    customer.activate()
 
-    expect(customer.isActive()).toBe(true);
-  });
+    expect(customer.isActive()).toBe(true)
+  })
 
-  it("should throw error when address is undefined when you activate the customer", () => {
+  test ('should throw error when address is undefined when you activate the customer', () => {
     expect(() => {
-      const customer = CustomerFactory.create("Fabio");
+      const customer = CustomerFactory.create('Fabio')
 
-      customer.activate();
+      customer.activate()
     })
-      .toThrowError("Address is mandatory to activate a customer");
-  });
+      .toThrowError('Address is mandatory to activate a customer')
+  })
 
-  it("should deactivate customer", () => {
-    const customer = CustomerFactory.create("Fabio");
-    
-    customer.deactivate();
+  test ('should deactivate customer', () => {
+    const customer = CustomerFactory.create('Fabio')
 
-    expect(customer.isActive()).toBe(false);
-  });
+    customer.deactivate()
 
-  it("should add reward points", () => {
-    const customer = CustomerFactory.create("Fabio");
-    expect(customer.rewardPoints).toBe(0);
+    expect(customer.isActive()).toBe(false)
+  })
 
-    customer.addRewardPoints(10);
-    expect(customer.rewardPoints).toBe(10);
+  test ('should add reward points', () => {
+    const customer = CustomerFactory.create('Fabio')
+    expect(customer.rewardPoints).toBe(0)
 
-    customer.addRewardPoints(10);
-    expect(customer.rewardPoints).toBe(20);
-  });
-});
+    customer.addRewardPoints(10)
+    expect(customer.rewardPoints).toBe(10)
+
+    customer.addRewardPoints(10)
+    expect(customer.rewardPoints).toBe(20)
+  })
+})

@@ -1,36 +1,36 @@
-import { BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table } from "sequelize-typescript";
-import ProductModel from "../../../product/repo/sequelize/product.model";
-import OrderModel from "./order.model";
+import { BelongsTo, Column, ForeignKey, Model, PrimaryKey, Table } from 'sequelize-typescript'
+import ProductModel from '../../../product/repo/sequelize/product.model'
+import OrderModel from './order.model'
 
 @Table({
-  tableName: "order_items",
-  timestamps: false,
+  tableName: 'order_items',
+  timestamps: false
 })
 export default class OrderItemModel extends Model {
   @PrimaryKey
   @Column
-  id: string;
+  id: string
 
   @ForeignKey(() => ProductModel)
   @Column({ allowNull: false })
-  productId: string;
+  productId: string
 
   @BelongsTo(() => ProductModel)
-  product: ProductModel;
+  product: ProductModel
 
   @ForeignKey(() => OrderModel)
   @Column({ allowNull: false })
-  orderId: string;
+  orderId: string
 
   @BelongsTo(() => OrderModel)
-  order: ProductModel;
+  order: ProductModel
 
   @Column({ allowNull: false })
-  quantity: number;
+  quantity: number
 
   @Column({ allowNull: false })
-  name: string;
+  name: string
 
   @Column({ allowNull: false })
-  price: number;
+  price: number
 }

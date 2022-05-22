@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "jest:clearCache": "jest --clearCache",
     "test:unit": "npm test -- --watch -c jest-unit.config.js",
     "test:verbose": "jest --passWithNoTests  --runInBand",
     "test:intg": "npm test -- --watch -c jest-integration.config.js",
