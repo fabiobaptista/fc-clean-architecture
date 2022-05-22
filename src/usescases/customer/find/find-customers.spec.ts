@@ -36,4 +36,17 @@ describe('Test find Customer use case', () => {
       }
     })
   })
+
+  test('should not find a customer', async () => {
+    const customerRepo = customerRepoMock()
+    const input: InputFindCustomerDto = { id: '123' }
+    const usecase = new FindCustomerUseCase(customerRepo)
+
+    jest.spyOn(customerRepo, 'find').mockImplementation(() => {
+      throw new Error('Customer not found')
+    })
+
+    void expect(async () => await usecase.execute(input))
+      .rejects.toThrow('Customer not found')
+  })
 })
