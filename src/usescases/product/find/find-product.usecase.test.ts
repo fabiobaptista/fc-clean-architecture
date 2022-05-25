@@ -7,7 +7,7 @@ import FindProductUseCase from './find-product.usecase'
 
 const productMock = new Product('1', 'Product 1', 10)
 
-describe('Test Integration Create Customer use case', () => {
+describe('Test Integration Find Product use case', () => {
   let sequelize: Sequelize
 
   beforeEach(async () => {
@@ -18,7 +18,7 @@ describe('Test Integration Create Customer use case', () => {
       sync: { force: true }
     })
 
-    await sequelize.addModels([ProductModel])
+    sequelize.addModels([ProductModel])
     await sequelize.sync()
   })
 
@@ -43,16 +43,12 @@ describe('Test Integration Create Customer use case', () => {
     })
   })
 
-//   test('should not find a customer', async () => {
-//     const customerRepo = new CustomerRepo()
-//     const input: InputFindCustomerDto = { id: '123' }
-//     const usecase = new FindCustomerUseCase(customerRepo)
+  test('should not find a product', async () => {
+    const productRepo = new ProductRepo()
+    const input: InputFindProductDto = { id: '123' }
+    const usecase = new FindProductUseCase(productRepo)
 
-//     jest.spyOn(customerRepo, 'find').mockImplementation(() => {
-//       throw new Error('Customer not found')
-//     })
-
-//     void expect(async () => await usecase.execute(input))
-//       .rejects.toThrow('Customer not found')
-//   })
+    void expect(async () => await usecase.execute(input))
+      .rejects.toThrow('Product not found')
+  })
 })
