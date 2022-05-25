@@ -35,25 +35,21 @@ describe('Test Create Product use case', () => {
     })
   })
 
-//   test('should create a customer', async () => {
-//     const customerRepo = customerRepoMock()
+  test('should create a customer', async () => {
+    const productRepo = productRepoMock()
 
-//     const input: InputCreateCustomerDto = {
-//       name: customerMock.name,
-//       address: {
-//         street: customerMock.address.street,
-//         number: customerMock.address.number,
-//         zip: customerMock.address.zip,
-//         city: customerMock.address.city
-//       }
-//     }
-//     const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
+    const input: InputCreateProductDto = {
+      id: productMock.id,
+      name: productMock.name,
+      price: productMock.price
+    }
+    const createProductUseCase = new CreateProductUseCase(productRepo)
 
-//     input.name = ''
+    input.name = ''
 
-//     await expect(createCustomerUseCase.execute(input))
-//       .rejects.toThrow('Name is required')
-//   })
+    await expect(createProductUseCase.execute(input))
+      .rejects.toThrow('Name is required')
+  })
 
 //   test('should create a customer', async () => {
 //     const customerRepo = customerRepoMock()
