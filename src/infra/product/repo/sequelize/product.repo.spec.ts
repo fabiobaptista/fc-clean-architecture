@@ -21,7 +21,7 @@ describe('Product repository test', () => {
     await sequileze.close()
   })
 
-  test ('should create a product', async () => {
+  test('should create a product', async () => {
     const productRepo = new ProductRepo()
     const product = new Product('1', 'Product', 100)
 
@@ -32,11 +32,11 @@ describe('Product repository test', () => {
     expect(productModel.toJSON()).toStrictEqual({
       id: product.id,
       name: product.name,
-      price: product.price,
+      price: product.price
     })
   })
 
-  test ('should update a product', async () => {
+  test('should update a product', async () => {
     const productRepo = new ProductRepo()
     const product = new Product('1', 'Product', 100)
 
@@ -66,7 +66,7 @@ describe('Product repository test', () => {
       })
   })
 
-  test ('should find a product', async () => {
+  test('should find a product', async () => {
     const productRepo = new ProductRepo()
     const product = new Product('1', 'Product', 100)
 
@@ -83,7 +83,7 @@ describe('Product repository test', () => {
     })
   })
 
-  test ('should find all products', async () => {
+  test('should find all products', async () => {
     const productRepo = new ProductRepo()
     const product = new Product('1', 'Product', 100)
     await productRepo.create(product)
