@@ -48,7 +48,7 @@ describe('Test Create Customer use case', () => {
     })
   })
 
-  test('should create a customer', async () => {
+  test('should receive a error if name is empty', async () => {
     const customerRepo = customerRepoMock()
 
     const input: InputCreateCustomerDto = {
@@ -68,7 +68,7 @@ describe('Test Create Customer use case', () => {
       .rejects.toThrow('Name is required')
   })
 
-  test('should create a customer', async () => {
+  test('should receive a error if street is empty', async () => {
     const customerRepo = customerRepoMock()
 
     const input: InputCreateCustomerDto = {
