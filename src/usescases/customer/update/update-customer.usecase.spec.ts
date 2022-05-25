@@ -38,7 +38,7 @@ describe('Test Update Customer use case', () => {
 
     const output: OutputUpdateCustomerDto = await updateCustomeruseCase.execute(input)
 
-    expect(output).toEqual({
+    expect(input).toEqual({
       id: output.id,
       name: output.name,
       address: {
