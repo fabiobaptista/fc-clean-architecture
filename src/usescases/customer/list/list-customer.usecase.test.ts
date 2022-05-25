@@ -67,15 +67,14 @@ describe('Test List Customer use case', () => {
     expect(output.customers[1].address.street).toBe(customer2.address.street)
   })
 
-  // test('should returns customer empty list', async () => {
-  //   const customerRepo = customerRepoMock()
-  //   jest.spyOn(customerRepo, 'findAll').mockReturnValue(Promise.resolve([]))
+  test('should returns customer empty list', async () => {
+    const customerRepo = new CustomerRepo()
 
-  //   const input: InputListCustomerDto = { }
-  //   const usecase = new ListCustomerUseCase(customerRepo)
+    const input: InputListCustomerDto = { }
+    const usecase = new ListCustomerUseCase(customerRepo)
 
-  //   const output: OutputListCustomersDto = await usecase.execute(input)
+    const output: OutputListCustomersDto = await usecase.execute(input)
 
-  //   expect(output.customers.length).toBe(0)
-  // })
+    expect(output.customers.length).toBe(0)
+  })
 })
