@@ -35,39 +35,31 @@ describe('Test Create Product use case', () => {
     })
   })
 
-  test('should create a customer', async () => {
+  test('should receive a error if name is empty', async () => {
     const productRepo = productRepoMock()
 
     const input: InputCreateProductDto = {
       id: productMock.id,
-      name: productMock.name,
+      name: '',
       price: productMock.price
     }
     const createProductUseCase = new CreateProductUseCase(productRepo)
-
-    input.name = ''
 
     await expect(createProductUseCase.execute(input))
       .rejects.toThrow('Name is required')
   })
 
-//   test('should create a customer', async () => {
-//     const customerRepo = customerRepoMock()
+  test('should receive a error if price is empty', async () => {
+    const productRepo = productRepoMock()
 
-//     const input: InputCreateCustomerDto = {
-//       name: customerMock.name,
-//       address: {
-//         street: customerMock.address.street,
-//         number: customerMock.address.number,
-//         zip: customerMock.address.zip,
-//         city: customerMock.address.city
-//       }
-//     }
-//     const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
+    const input: InputCreateProductDto = {
+      id: productMock.id,
+      name: productMock.name,
+      price: -1
+    }
+    const createProductUseCase = new CreateProductUseCase(productRepo)
 
-//     input.address.street = ''
-
-//     await expect(createCustomerUseCase.execute(input))
-//       .rejects.toThrow('Street is required')
-//   })
+    await expect(createProductUseCase.execute(input))
+      .rejects.toThrow('Price must be greater than zero')
+  })
 })
