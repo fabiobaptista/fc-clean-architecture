@@ -37,15 +37,15 @@ describe('Test List Product use case', () => {
     expect(output.products[1].price).toBe(product2.price)
   })
 
-  // test('should returns customer empty list', async () => {
-  //   const customerRepo = productRepoMock()
-  //   jest.spyOn(customerRepo, 'findAll').mockReturnValue(Promise.resolve([]))
+  test('should returns product empty list', async () => {
+    const customerRepo = productRepoMock()
+    jest.spyOn(customerRepo, 'findAll').mockReturnValue(Promise.resolve([]))
 
-  //   const input: InputListProductDto = { }
-  //   const usecase = new ListProductUseCase(customerRepo)
+    const input: InputListProductDto = { }
+    const usecase = new ListProductUseCase(customerRepo)
 
-  //   const output: OutputListProductsDto = await usecase.execute(input)
+    const output: OutputListProductsDto = await usecase.execute(input)
 
-  //   expect(output.products.length).toBe(0)
-  // })
+    expect(output.products.length).toBe(0)
+  })
 })
