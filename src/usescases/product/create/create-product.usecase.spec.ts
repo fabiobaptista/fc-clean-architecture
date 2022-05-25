@@ -39,6 +39,20 @@ describe('Test Create Product use case', () => {
     const productRepo = productRepoMock()
 
     const input: InputCreateProductDto = {
+      id: '',
+      name: productMock.name,
+      price: productMock.price
+    }
+    const createProductUseCase = new CreateProductUseCase(productRepo)
+
+    await expect(createProductUseCase.execute(input))
+      .rejects.toThrow('Id is required')
+  })
+
+  test('should receive a error if name is empty', async () => {
+    const productRepo = productRepoMock()
+
+    const input: InputCreateProductDto = {
       id: productMock.id,
       name: '',
       price: productMock.price
