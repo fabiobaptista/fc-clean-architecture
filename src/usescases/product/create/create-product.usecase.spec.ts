@@ -35,7 +35,7 @@ describe('Test Create Product use case', () => {
     })
   })
 
-  test('should receive a error if name is empty', async () => {
+  test('should receive a error if id is empty', async () => {
     const productRepo = productRepoMock()
 
     const input: InputCreateProductDto = {
@@ -63,7 +63,7 @@ describe('Test Create Product use case', () => {
       .rejects.toThrow('Name is required')
   })
 
-  test('should receive a error if price is empty', async () => {
+  test('should receive a error if price is less zero', async () => {
     const productRepo = productRepoMock()
 
     const input: InputCreateProductDto = {

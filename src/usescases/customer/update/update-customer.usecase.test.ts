@@ -12,16 +12,7 @@ const customerMock = CustomerFactory.create(
   new Address('street', 1, 'city', 'zip')
 )
 
-const customerRepoMock = (): CustomerRepoInterface => {
-  return {
-    find: jest.fn(),
-    create: jest.fn(),
-    update: jest.fn(),
-    findAll: jest.fn()
-  }
-}
-
-describe('Test Update Customer use case', () => {
+describe('Test Integration Update Customer use case', () => {
   let sequelize: Sequelize
 
   beforeEach(async () => {

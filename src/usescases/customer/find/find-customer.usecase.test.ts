@@ -51,7 +51,7 @@ describe('Test Integration Create Customer use case', () => {
     })
   })
 
-  test('should not find a customer', async () => {
+  test('should receive a error if not found a customer', async () => {
     const customerRepo = new CustomerRepo()
     const input: InputFindCustomerDto = { id: '123' }
     const usecase = new FindCustomerUseCase(customerRepo)

@@ -7,7 +7,7 @@ import CreateProductUseCase from './create-product.usecase'
 
 const productMock = new Product('1', 'Product 1', 10)
 
-describe('Test Integration Create Customer use case', () => {
+describe('Test Integration Create Product use case', () => {
   let sequelize: Sequelize
 
   beforeEach(async () => {
@@ -44,44 +44,4 @@ describe('Test Integration Create Customer use case', () => {
       price: input.price
     })
   })
-
-//   // test('should create a customer', async () => {
-//   //   const customerRepo = new CustomerRepo()
-
-//   //   const input: InputCreateCustomerDto = {
-//   //     name: customerMock.name,
-//   //     address: {
-//   //       street: customerMock.address.street,
-//   //       number: customerMock.address.number,
-//   //       zip: customerMock.address.zip,
-//   //       city: customerMock.address.city
-//   //     }
-//   //   }
-//   //   const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
-
-//   //   input.name = ''
-
-//   //   await expect(createCustomerUseCase.execute(input))
-//   //     .rejects.toThrow('Name is required')
-//   // })
-
-//   // test('should create a customer', async () => {
-//   //   const customerRepo = new CustomerRepo()
-
-//   //   const input: InputCreateCustomerDto = {
-//   //     name: customerMock.name,
-//   //     address: {
-//   //       street: customerMock.address.street,
-//   //       number: customerMock.address.number,
-//   //       zip: customerMock.address.zip,
-//   //       city: customerMock.address.city
-//   //     }
-//   //   }
-//   //   const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
-
-//   //   input.address.street = ''
-
-//   //   await expect(createCustomerUseCase.execute(input))
-//   //     .rejects.toThrow('Street is required')
-//   // })
 })

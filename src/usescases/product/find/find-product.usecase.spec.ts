@@ -29,7 +29,7 @@ describe('Test Find Product use case', () => {
     })
   })
 
-  test('should not find a product', async () => {
+  test('should receive a error if not found a product', async () => {
     const customerRepo = productRepoMock()
     const input: InputFindProductDto = { id: '1' }
     const usecase = new FindProductUseCase(customerRepo)

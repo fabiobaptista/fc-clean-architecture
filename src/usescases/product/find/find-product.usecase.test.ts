@@ -43,7 +43,7 @@ describe('Test Integration Find Product use case', () => {
     })
   })
 
-  test('should not find a product', async () => {
+  test('should receive a error if not found a product', async () => {
     const productRepo = new ProductRepo()
     const input: InputFindProductDto = { id: '123' }
     const usecase = new FindProductUseCase(productRepo)
