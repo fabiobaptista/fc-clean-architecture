@@ -1,5 +1,4 @@
 import { Sequelize } from 'sequelize-typescript'
-import Customer from '../../../../domain/customer/entity/customer'
 import CustomerFactory from '../../../../domain/customer/factory/customer.factory'
 import Address from '../../../../domain/customer/value-objects/address'
 import CustomerModel from './customer.model'
@@ -13,7 +12,7 @@ describe('Customer repository test', () => {
       dialect: 'sqlite',
       storage: ':memory:',
       logging: false,
-      sync: { force: true },
+      sync: { force: true }
     })
 
     await sequelize.addModels([CustomerModel])
@@ -24,7 +23,7 @@ describe('Customer repository test', () => {
     await sequelize.close()
   })
 
-  test ('should create a customer', async () => {
+  test('should create a customer', async () => {
     const customerRepo = new CustomerRepo()
     const customer = CustomerFactory.create('Fabio', new Address('Street', 1, 'Zipcode', 'City'))
 
@@ -40,11 +39,11 @@ describe('Customer repository test', () => {
       street: customer.address.street,
       number: customer.address.number,
       zipcode: customer.address.zip,
-      city: customer.address.city,
+      city: customer.address.city
     })
   })
 
-  test ('should update a customer', async () => {
+  test('should update a customer', async () => {
     const customerRepo = new CustomerRepo()
     const customer = CustomerFactory.create('Fabio', new Address('Street', 1, 'Zipcode', 'City'))
 
@@ -68,7 +67,7 @@ describe('Customer repository test', () => {
     })
   })
 
-  test ('should find a customer', async () => {
+  test('should find a customer', async () => {
     const customerRepo = new CustomerRepo()
     const customer = CustomerFactory.create('Customer', new Address('Street', 1, 'Zipcode', 'City'))
 
@@ -79,7 +78,7 @@ describe('Customer repository test', () => {
     expect(customer).toStrictEqual(customerResult)
   })
 
-  test ('should throw an error when customer is not found', async () => {
+  test('should throw an error when customer is not found', async () => {
     const customerRepo = new CustomerRepo()
 
     void expect(async () => {
@@ -87,7 +86,7 @@ describe('Customer repository test', () => {
     }).rejects.toThrow('Customer not found')
   })
 
-  test ('should find all customers', async () => {
+  test('should find all customers', async () => {
     const customerRepo = new CustomerRepo()
     const customer1 = CustomerFactory.create('Fabio', new Address('Street', 1, 'Zipcode', 'City'))
     customer1.addRewardPoints(10)
