@@ -51,43 +51,16 @@ describe('Test Integration Create Customer use case', () => {
     })
   })
 
-  // test('should create a customer', async () => {
-  //   const customerRepo = new CustomerRepo()
+  test('should not find a customer', async () => {
+    const customerRepo = new CustomerRepo()
+    const input: InputFindCustomerDto = { id: '123' }
+    const usecase = new FindCustomerUseCase(customerRepo)
 
-  //   const input: InputCreateCustomerDto = {
-  //     name: customerMock.name,
-  //     address: {
-  //       street: customerMock.address.street,
-  //       number: customerMock.address.number,
-  //       zip: customerMock.address.zip,
-  //       city: customerMock.address.city
-  //     }
-  //   }
-  //   const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
+    jest.spyOn(customerRepo, 'find').mockImplementation(() => {
+      throw new Error('Customer not found')
+    })
 
-  //   input.name = ''
-
-  //   await expect(createCustomerUseCase.execute(input))
-  //     .rejects.toThrow('Name is required')
-  // })
-
-  // test('should create a customer', async () => {
-  //   const customerRepo = new CustomerRepo()
-
-  //   const input: InputCreateCustomerDto = {
-  //     name: customerMock.name,
-  //     address: {
-  //       street: customerMock.address.street,
-  //       number: customerMock.address.number,
-  //       zip: customerMock.address.zip,
-  //       city: customerMock.address.city
-  //     }
-  //   }
-  //   const createCustomerUseCase = new CreateCustomerUseCase(customerRepo)
-
-  //   input.address.street = ''
-
-  //   await expect(createCustomerUseCase.execute(input))
-  //     .rejects.toThrow('Street is required')
-  // })
+    void expect(async () => await usecase.execute(input))
+      .rejects.toThrow('Customer not found')
+  })
 })
