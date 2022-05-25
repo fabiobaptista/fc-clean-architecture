@@ -19,7 +19,7 @@ describe('Test Integration List Product use case', () => {
       sync: { force: true }
     })
 
-    await sequelize.addModels([ProductModel])
+    sequelize.addModels([ProductModel])
     await sequelize.sync()
   })
 
@@ -49,7 +49,7 @@ describe('Test Integration List Product use case', () => {
     expect(output.products[1].price).toBe(product2.price)
   })
 
-  test('should returns customer empty list', async () => {
+  test('should returns product empty list', async () => {
     const customerRepo = new ProductRepo()
 
     const input: InputListProductDto = { }
