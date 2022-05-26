@@ -1,13 +1,13 @@
-import NotificationError from './notification-error'
+import Notifier from './notifier'
 
 describe('Unit test for Notification', () => {
   test('should don\'t create a error', () => {
-    const notification = new NotificationError()
+    const notification = new Notifier()
     expect(notification.hasErrors).toBe(false)
   })
 
   test('should create a error', () => {
-    const notification = new NotificationError()
+    const notification = new Notifier()
 
     const error = {
       message: 'error message',
@@ -25,7 +25,7 @@ describe('Unit test for Notification', () => {
   })
 
   test('should create many errors', () => {
-    const notification = new NotificationError()
+    const notification = new Notifier()
 
     const error = {
       message: 'error message',
@@ -40,7 +40,7 @@ describe('Unit test for Notification', () => {
   })
 
   test('should returns only messages of customer context', () => {
-    const notification = new NotificationError()
+    const notification = new Notifier()
 
     const error1 = {
       message: 'error message',
@@ -61,7 +61,7 @@ describe('Unit test for Notification', () => {
   })
 
   test('should returns all messages', () => {
-    const notification = new NotificationError()
+    const notification = new Notifier()
 
     const error1 = {
       message: 'error message',
@@ -80,5 +80,25 @@ describe('Unit test for Notification', () => {
     notification.addError(error2)
 
     expect(notification.messages()).toBe(`${formatedMessage1},${formatedMessage2}`)
+  })
+
+  test('should returns all errors', () => {
+    const notification = new Notifier()
+
+    const error1 = {
+      message: 'error message',
+      context: 'customer'
+    }
+
+    notification.addError(error1)
+
+    const error2 = {
+      message: 'error message',
+      context: 'order'
+    }
+
+    notification.addError(error2)
+
+    expect(notification.errors).toEqual([error1, error2])
   })
 })

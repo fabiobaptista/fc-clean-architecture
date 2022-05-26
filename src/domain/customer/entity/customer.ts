@@ -1,6 +1,8 @@
+import EntityNotifier from '@/domain/@shared/entity/entity-notifier'
+import NotificationError from '@/domain/@shared/notification/notification-error'
 import Address from '../value-objects/address'
 
-export default class Customer {
+export default class Customer extends EntityNotifier {
   private readonly _id: string
   private _name: string
   private _address: Address
@@ -8,17 +10,22 @@ export default class Customer {
   private _rewardPoints: number = 0
 
   constructor (id: string, name: string) {
+    super()
     this._id = id
     this._name = name
     this.validate()
+
+    if (this.notifier.hasErrors) {
+      // throw new NotificationError(this.notifier.errors)
+    }
   }
 
   validate (): void {
     if (this._id.length === 0) {
-      throw new Error('Id is required')
+      this.notifier.addError({ message: 'Id is required', context: 'customer' })
     }
     if (this._name.length === 0) {
-      throw new Error('Name is required')
+      this.notifier.addError({ message: 'Name is required', context: 'customer' })
     }
   }
 
