@@ -42,7 +42,7 @@ describe('E2E test to Product', () => {
     expect(status).toBe(500)
   })
 
-  test('should list all customers', async () => {
+  test('should list all products', async () => {
     {
       const input: InputCreateProductDto = {
         id: '1',
@@ -76,7 +76,7 @@ describe('E2E test to Product', () => {
     const { status, body }: {
       status: number
       body: OutputListProductsDto
-    } = await request(app).get('/customer').send()
+    } = await request(app).get('/product').send()
 
     expect(status).toBe(200)
     expect(body.products.length).toBe(2)
