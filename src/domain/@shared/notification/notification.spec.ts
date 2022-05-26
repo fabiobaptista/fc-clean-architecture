@@ -1,6 +1,11 @@
 import NotificationError from './notification-error'
 
 describe('Unit test for Notification', () => {
+  test('should don\'t create a error', () => {
+    const notification = new NotificationError()
+    expect(notification.hasErrors).toBe(false)
+  })
+
   test('should create a error', () => {
     const notification = new NotificationError()
 
@@ -14,6 +19,7 @@ describe('Unit test for Notification', () => {
 
     const messages = notification.messages('customer')
 
+    expect(notification.hasErrors).toBe(true)
     expect(messages.split(',').length).toBe(1)
     expect(messages).toBe(formatedMessage)
   })
