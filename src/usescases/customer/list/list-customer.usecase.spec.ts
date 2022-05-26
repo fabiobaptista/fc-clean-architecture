@@ -2,7 +2,7 @@ import CustomerFactory from '@/domain/customer/factory/customer.factory'
 import CustomerRepoInterface from '@/domain/customer/repo/customer.repo.interface'
 import Address from '@/domain/customer/value-objects/address'
 import { InputListCustomerDto, OutputListCustomersDto } from './list-customer.dto'
-import { ListCustomerUseCase } from './list-customer.usecase'
+import ListCustomerUseCase from './list-customer.usecase'
 
 const customer1 = CustomerFactory.create(
   'Fabio 1',

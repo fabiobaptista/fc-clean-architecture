@@ -1,11 +1,10 @@
 import CustomerFactory from '@/domain/customer/factory/customer.factory'
-import CustomerRepoInterface from '@/domain/customer/repo/customer.repo.interface'
 import Address from '@/domain/customer/value-objects/address'
 import CustomerModel from '@/infra/customer/repo/sequelize/customer.model'
 import CustomerRepo from '@/infra/customer/repo/sequelize/customer.repo'
 import { Sequelize } from 'sequelize-typescript'
 import { InputListCustomerDto, OutputListCustomersDto } from './list-customer.dto'
-import { ListCustomerUseCase } from './list-customer.usecase'
+import ListCustomerUseCase from './list-customer.usecase'
 
 const customer1 = CustomerFactory.create(
   'Fabio 1',

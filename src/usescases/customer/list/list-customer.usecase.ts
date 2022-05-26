@@ -2,7 +2,7 @@ import Customer from '@/domain/customer/entity/customer'
 import CustomerRepoInterface from '@/domain/customer/repo/customer.repo.interface'
 import { InputListCustomerDto, OutputListCustomerDto, OutputListCustomersDto } from './list-customer.dto'
 
-export class ListCustomerUseCase {
+export default class ListCustomerUseCase {
   private readonly customerRepo: CustomerRepoInterface
   constructor (customerRepo: CustomerRepoInterface) {
     this.customerRepo = customerRepo
