@@ -34,6 +34,7 @@
     "lint-staged": "^12.4.1",
     "nodemon": "^2.0.16",
     "npm-check": "^5.9.2",
+    "supertest": "^6.2.3",
     "ts-jest": "^28.0.2",
     "ts-node": "^10.8.0",
     "typescript": "^4.6.4"
