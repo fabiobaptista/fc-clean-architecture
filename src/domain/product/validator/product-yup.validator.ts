@@ -1,19 +1,24 @@
 import Validator from '@/domain/@shared/validator/validator'
-import Customer from '../entity/customer'
-import yup from 'yup'
+import * as yup from 'yup'
+import Product from '../entity/product'
 
-export default class CustomerYupValidator implements Validator<Customer> {
-  validate (entity: Customer): void {
+export default class ProductYupValidator implements Validator<Product> {
+  validate (entity: Product): void {
     try {
       yup
         .object()
         .shape({
           id: yup.string().required('Id is required'),
-          name: yup.string().required('Name is required')
+          name: yup.string().required('Name is required'),
+          price: yup
+            .number()
+            .required('Price is required')
+            .moreThan(0, 'Price must be greater than zero')
         })
         .validateSync({
           id: entity.id,
-          name: entity.name
+          name: entity.name,
+          price: entity.price
         },
         {
           abortEarly: false
@@ -22,7 +27,7 @@ export default class CustomerYupValidator implements Validator<Customer> {
       const e = error as yup.ValidationError
       e.errors.forEach(error => {
         entity.notifier.addError({
-          context: 'customer',
+          context: 'product',
           message: error
         })
       })
