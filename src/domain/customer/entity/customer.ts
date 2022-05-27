@@ -16,7 +16,7 @@ export default class Customer extends EntityNotifier {
     this.validate()
 
     if (this.notifier.hasErrors) {
-      // throw new NotificationError(this.notifier.errors)
+      throw new NotificationError(this.notifier.errors)
     }
   }
 
