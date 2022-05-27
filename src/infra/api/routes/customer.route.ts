@@ -4,6 +4,7 @@ import CreateCustomerUseCase from '@/usescases/customer/create/create-customer.u
 import ListCustomerUseCase from '@/usescases/customer/list/list-customer.usecase'
 import { InputCreateCustomerDto, OutputCreateCustomerDto } from '@/usescases/customer/create/create-customer.dto'
 import { OutputListCustomersDto } from '@/usescases/customer/list/list-customer.dto'
+import CustomerPresenter from '../presenters/customer.presenter'
 
 export const customerRoute: Router = express.Router()
 
@@ -12,7 +13,11 @@ customerRoute.get('/', async (req: Request, res: Response): Promise<void> => {
   try {
     const output: OutputListCustomersDto = await usecase.execute({})
 
-    res.status(200).send(output)
+    res.format({
+      json: async () => res.status(200).send(output),
+      xml: async () => res.status(200).send(CustomerPresenter.listXML(output))
+    })
+    // res.status(200).send(output)
   } catch (error) {
     res.status(500).send(error)
   }
