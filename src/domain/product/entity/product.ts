@@ -1,9 +1,13 @@
-export default class Product {
+import EntityNotifier from '@/domain/@shared/entity/entity-notifier'
+import NotificationError from '@/domain/@shared/notification/notification-error'
+
+export default class Product extends EntityNotifier {
   private readonly _id: string
   private _name: string
   private _price: number
 
   constructor (id: string, name: string, price: number) {
+    super()
     this._id = id
     this._name = name
     this._price = price
@@ -12,14 +16,19 @@ export default class Product {
 
   validate (): boolean {
     if (this._id.length === 0) {
-      throw new Error('Id is required')
+      this.notifier.addError({ message: 'Id is required', context: 'product' })
     }
     if (this._name.length === 0) {
-      throw new Error('Name is required')
+      this.notifier.addError({ message: 'Name is required', context: 'product' })
     }
     if (this._price < 0) {
-      throw new Error('Price must be greater than zero')
+      this.notifier.addError({ message: 'Price must be greater than zero', context: 'product' })
     }
+
+    if (this.notifier.hasErrors) {
+      throw new NotificationError(this.notifier.errors)
+    }
+
     return true
   }
 
