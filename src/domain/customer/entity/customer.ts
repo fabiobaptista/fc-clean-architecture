@@ -14,10 +14,6 @@ export default class Customer extends EntityNotifier {
     this._id = id
     this._name = name
     this.validate()
-
-    if (this.notifier.hasErrors) {
-      throw new NotificationError(this.notifier.errors)
-    }
   }
 
   validate (): void {
@@ -26,6 +22,10 @@ export default class Customer extends EntityNotifier {
     }
     if (this._name.length === 0) {
       this.notifier.addError({ message: 'Name is required', context: 'customer' })
+    }
+
+    if (this.notifier.hasErrors) {
+      throw new NotificationError(this.notifier.errors)
     }
   }
 
@@ -63,7 +63,7 @@ export default class Customer extends EntityNotifier {
 
   activate (): void {
     if (this._address === undefined) {
-      throw new Error('Address is mandatory to activate a customer')
+      throw new Error('customer: Address is mandatory to activate a customer')
     }
     this._active = true
   }

@@ -42,7 +42,7 @@ describe('Customer unit test', () => {
 
       customer.activate()
     })
-      .toThrowError('Address is mandatory to activate a customer')
+      .toThrowError('customer: Address is mandatory to activate a customer')
   })
 
   test('should deactivate customer', () => {

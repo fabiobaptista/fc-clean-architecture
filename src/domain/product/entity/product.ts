@@ -14,7 +14,7 @@ export default class Product extends EntityNotifier {
     this.validate()
   }
 
-  validate (): boolean {
+  validate (): void {
     if (this._id.length === 0) {
       this.notifier.addError({ message: 'Id is required', context: 'product' })
     }
@@ -28,8 +28,6 @@ export default class Product extends EntityNotifier {
     if (this.notifier.hasErrors) {
       throw new NotificationError(this.notifier.errors)
     }
-
-    return true
   }
 
   get id (): string {
