@@ -3,21 +3,21 @@ import Address from '../value-objects/address'
 import Customer from './customer'
 
 describe('Customer unit test', () => {
-  test ('should throw error when id is empty', () => {
+  test('should throw error when id is empty', () => {
     expect(() => {
       void new Customer('', 'Fabio')
     })
-      .toThrowError('Id is required')
+      .toThrowError('customer: Id is required')
   })
 
-  test ('should throw error when name is empty', () => {
+  test('should throw error when name is empty', () => {
     expect(() => {
       void new Customer('1', '')
     })
-      .toThrowError('Name is required')
+      .toThrowError('customer: Name is required')
   })
 
-  test ('should change name', () => {
+  test('should change name', () => {
     const newName = 'Fabio Baptista'
     const customer = CustomerFactory.create('Fabio')
 
@@ -26,7 +26,7 @@ describe('Customer unit test', () => {
     expect(customer.name).toBe(newName)
   })
 
-  test ('should activate customer', () => {
+  test('should activate customer', () => {
     const customer = CustomerFactory.create('Fabio')
     const address = new Address('Street', 1, 'Zip', 'City')
     customer.changeAddress(address)
@@ -36,7 +36,7 @@ describe('Customer unit test', () => {
     expect(customer.isActive()).toBe(true)
   })
 
-  test ('should throw error when address is undefined when you activate the customer', () => {
+  test('should throw error when address is undefined when you activate the customer', () => {
     expect(() => {
       const customer = CustomerFactory.create('Fabio')
 
@@ -45,7 +45,7 @@ describe('Customer unit test', () => {
       .toThrowError('Address is mandatory to activate a customer')
   })
 
-  test ('should deactivate customer', () => {
+  test('should deactivate customer', () => {
     const customer = CustomerFactory.create('Fabio')
 
     customer.deactivate()
@@ -53,7 +53,7 @@ describe('Customer unit test', () => {
     expect(customer.isActive()).toBe(false)
   })
 
-  test ('should add reward points', () => {
+  test('should add reward points', () => {
     const customer = CustomerFactory.create('Fabio')
     expect(customer.rewardPoints).toBe(0)
 
