@@ -100,4 +100,53 @@ describe('E2E test to Customer', () => {
     expect(status).toBe(200)
     expect(body.customers.length).toBe(2)
   })
+
+  test('should returns all customers in XML format', async () => {
+    const input1 = {
+      name: 'Fabio 1',
+      address: {
+        street: 'Street',
+        number: 123,
+        city: 'City',
+        zip: 'Zip'
+      }
+    }
+
+    await request(app).post('/customer').send(input1)
+
+    const input2 = {
+      name: 'Fabio 2',
+      address: {
+        street: 'Street',
+        number: 123,
+        city: 'City',
+        zip: 'Zip'
+      }
+    }
+    await request(app).post('/customer').send(input2)
+
+    const { status, text }: {
+      status: number
+      text: string
+    } = await request(app)
+      .get('/customer')
+      .set('Accept', 'application/xml')
+      .send()
+
+    console.log('text', text)
+    expect(status).toBe(200)
+    expect(text).toContain('<?xml version="1.0" encoding="UTF-8"?>')
+    expect(text).toContain('<customers>')
+    expect(text).toContain('<customer>')
+    expect(text).toContain(`<name>${input1.name}</name>`)
+    expect(text).toContain('<address>')
+    expect(text).toContain(`<street>${input1.address.street}</street>`)
+    expect(text).toContain(`<city>${input1.address.city}</city>`)
+    expect(text).toContain(`<number>${input1.address.number}</number>`)
+    expect(text).toContain(`<zip>${input1.address.zip}</zip>`)
+    expect(text).toContain('</address>')
+    expect(text).toContain('</customer>')
+    expect(text).toContain('</customers>')
+    expect(text).toContain(`<name>${input2.name}</name>`)
+  })
 })
